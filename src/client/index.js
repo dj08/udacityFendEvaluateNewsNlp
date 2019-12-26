@@ -1,7 +1,12 @@
-import { checkForName } from './js/nameChecker'
-import { handleSubmit } from './js/formHandler'
+import { handleSubmit } from './js/formHandler.js';
+import { checkForName } from './js/nameChecker.js';
 
-console.log(checkForName);
+// We can do this, thanks to css-loader!
+import './styles/base.scss';
+import './styles/footer.scss';
+import './styles/form.scss';
+import './styles/header.scss';
+import './styles/resets.scss';
 
-alert("I EXIST")
-console.log("CHANGE!!");
+// For some reason, I need export both here AND at function definitions.
+export { checkForName, handleSubmit };
