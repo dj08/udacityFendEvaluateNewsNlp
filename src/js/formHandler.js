@@ -3,7 +3,6 @@ async function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    // checkForName(formText)
     
     console.log("::: Form Submitted :::")
     const apiResponse = await fetch('http://localhost:8081/analyze', {
@@ -15,11 +14,27 @@ async function handleSubmit(event) {
         body: JSON.stringify({input: formText})
     })
           .then(res => res.json())
-          .then(res => {
-              console.log(res);
-              document.getElementById('results').innerHTML = JSON.stringify(res.response, null, '\t');
-          })
-          .catch(err => console.log(err))
+          .then(res => updateResultsUi(res.response))
+          .catch(err => console.log(err));
+}
+
+function uiHelper(id, value) {
+    document.getElementById(id).innerHTML = value
+}
+
+function updateResultsUi(resultsFromApi) {
+    const polarityConfidence =
+          (resultsFromApi.polarity_confidence * 100).toFixed(2);
+    const subjectivityConfidence =
+          (resultsFromApi.subjectivity_confidence * 100).toFixed(2);
+    const polarityText =
+          `${resultsFromApi.polarity} (${polarityConfidence}% Confidence)`;
+    const subjectivityText =
+          `${resultsFromApi.subjectivity} (${subjectivityConfidence}% Confidence)`;
+    
+    uiHelper('textSubmitted', `Text Processed: ${resultsFromApi.text}`);
+    uiHelper('polarity', `Polarity: ${polarityText}`);
+    uiHelper('subjectivity', `Subjectivity: ${subjectivityText}`);
 }
 
 export { handleSubmit }
