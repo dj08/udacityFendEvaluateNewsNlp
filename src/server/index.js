@@ -8,6 +8,13 @@ dotenv.config();
 
 const app = express()
 
+// Check for existence of required keys
+if (!(('API_KEY' in process.env) &&
+      ('APP_ID' in process.env))) {
+    throw "ERROR: Could not find Aylien App ID and/or API Key." +
+	" Is the .env file correctly placed?"
+}
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
