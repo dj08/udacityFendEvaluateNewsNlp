@@ -13,7 +13,7 @@ module.exports = {
 	libraryTarget: 'var',
 	library: 'Client'
     },
-    entry: './src/client/index.js',
+    entry: './src/index.js',
     optimization: {
 	minimizer: [new TerserPlugin(), new OptimizeCssAssetsPlugin()]
     },
@@ -40,7 +40,7 @@ module.exports = {
     },
     plugins: [
 	new HtmlWebPackPlugin({
-	    template: './src/client/views/index.html',
+	    template: './src/views/index.html',
 	    filename: './index.html'
 	}),
 	new MiniCssExtractPlugin({filename: '[name].css'}),
