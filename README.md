@@ -12,7 +12,8 @@ attributes of a given piece of text.
 
 The app is constituted of a couple of parts: the frontend app and a
 background server app. The former handles interactions with the user,
-while the latter handles API interaction.
+while the latter handles API interaction. The entire code is linted
+using `eslint:recommended` configuration during webpack compile.
 
 Here is how to get started in production mode:
 + Clone the repository to your machine, `cd` to app directory
@@ -22,8 +23,9 @@ Here is how to get started in production mode:
   'API Key' respectively. The file is not supplied with the repo for
   privacy purposes.
 + **[PRODUCTION MODE]** Start the production app: `npm run start` or
-  simply `npm start`
-+ **[DEVELOPMENT MODE]** Start the development app: `npm run start-dev`
+  simply `npm start`. Visit `localhost:8081` in your web browser.
++ **[DEVELOPMENT MODE]** Start the development app: `npm run
+  start-dev`. This will automatically start a web browser session.
 
 An example of `.env` file:
 ```
