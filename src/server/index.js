@@ -1,11 +1,16 @@
 var path = require('path')
 const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 const aylienTextApi = require('aylien_textapi');
 const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express()
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(cors())
 app.use(express.static('dist'))
 
 console.log(__dirname)
@@ -21,18 +26,19 @@ app.get('/', function (req, res) {
 })
 
 // designates what port the app will listen to for incoming requests
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
+app.listen(8081, function () {
+    console.log('Example app listening on port 8081!')
 })
 
-app.get('/analyze', function (req, res) {
+app.post('/analyze', function (req, res) {
     aylienApi.sentiment({
-	'text': 'How nice of you, sir!'
-    }, function (err, res) {
-	if (err===null) {
-	    res.send(res);
+	'text': req.body.input
+    }, function (apiErr, apiRes) {
+	console.log("**R: ", apiRes);
+	if (apiErr===null) {
+	    res.send({success: true, response: apiRes});
 	} else {
-	    res.send({success: false, response: res})
+	    res.send({success: false, response: apiRes})
 	}
     });
 })
