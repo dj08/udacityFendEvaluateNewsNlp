@@ -18,7 +18,7 @@ async function handleSubmit(event) {
           .catch(err => console.log(err));
 }
 
-function uiHelper(id, value) {
+export function uiHelper(id, value) {
     document.getElementById(id).innerHTML = value
 }
 
