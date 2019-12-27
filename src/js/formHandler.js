@@ -32,7 +32,8 @@ function updateResultsUi(resultsFromApi) {
     const subjectivityText =
           `${resultsFromApi.subjectivity} (${subjectivityConfidence}% Confidence)`;
     
-    uiHelper('textSubmitted', `Text Processed: ${resultsFromApi.text}`);
+    uiHelper('textSubmitted',
+             `Text Processed: ${resultsFromApi.text.substring(0,20)}...`);
     uiHelper('polarity', `Polarity: ${polarityText}`);
     uiHelper('subjectivity', `Subjectivity: ${subjectivityText}`);
 }

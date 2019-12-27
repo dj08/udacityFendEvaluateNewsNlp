@@ -39,13 +39,14 @@ app.listen(8081, function () {
 
 app.post('/analyze', function (req, res) {
     aylienApi.sentiment({
-	'text': req.body.input
-    }, function (apiErr, apiRes) {
+	'url': req.body.input
+    }, function (apiErr, apiRes, apiRem) {
 	console.log("**R: ", apiRes);
+	console.log("**N: Remaining queries: ", apiRem);
 	if (apiErr===null) {
-	    res.send({success: true, response: apiRes});
+	    res.send({success: true, remaining: apiRem, response: apiRes});
 	} else {
-	    res.send({success: false, response: apiRes})
+	    res.send({success: false, remaining: apiRem, response: apiRes})
 	}
     });
 })
