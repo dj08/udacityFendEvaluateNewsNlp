@@ -21,10 +21,9 @@ Here is how to get started in production mode:
   `API_KEY`. These refer to your personal Aylien 'Application ID' and
   'API Key' respectively. The file is not supplied with the repo for
   privacy purposes.
-+ Start the background app: `npm run start`
-+ Start the frontend app
-  + For production mode, use command: `npm run build-prod`
-  + For development mode, use command: `npm run build-dev`
++ **[PRODUCTION MODE]** Start the production app: `npm run start` or
+  simply `npm start`
++ **[DEVELOPMENT MODE]** Start the development app: `npm run start-dev`
 
 An example of `.env` file:
 ```
