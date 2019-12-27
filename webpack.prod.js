@@ -9,6 +9,10 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     mode: 'production',
+    output: {
+	libraryTarget: 'var',
+	library: 'Client'
+    },
     entry: './src/client/index.js',
     optimization: {
 	minimizer: [new TerserPlugin(), new OptimizeCssAssetsPlugin()]
@@ -23,13 +27,6 @@ module.exports = {
 		test: /\.js$/,
 		exclude: /node_modules/,
 		loader: "babel-loader"
-	    },
-	    {
-		enforce: 'pre', // This comes before babel-loader
-		test: /.js$/,
-		exclude: /node_modules/,
-		loader: 'eslint-loader',
-		options: {}
 	    },
 	    {
 		// We use the loader supplied by plugin instead of
